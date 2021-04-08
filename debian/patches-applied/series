@@ -31,3 +31,5 @@ fix-autoreconf.patch
 0001-pam_motd-Export-MOTD_SHOWN-pam-after-showing-MOTD.patch
 0002-pam_motd-Mention-setting-MOTD_SHOWN-pam-in-the-man-p.patch
 0003-Return-only-PAM_IGNORE-or-error-from-pam_motd.patch
+add_pam_faillock.patch
+pam_faillock_create_directory

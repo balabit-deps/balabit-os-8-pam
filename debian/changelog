@@ -1,3 +1,15 @@
+pam (1.3.1-5ubuntu4.2) focal; urgency=medium
+
+  * Backport pam_faillock module from pam 1.4.0 (LP: #1927796)
+    - debian/patches-applied/add_pam_faillock.patch: add module.
+    - debian/patches-applied/pam_faillock_create_directory: create dir
+      before creating file in modules/pam_faillock/faillock.c.
+    - debian/rules: set execute permissions on pam_faillock test.
+    - debian/libpam-modules-bin.install: install faillock binary and man
+      page.
+
+ -- Marc Deslauriers <marc.deslauriers@ubuntu.com>  Thu, 08 Apr 2021 07:06:27 -0400
+
 pam (1.3.1-5ubuntu4.1) focal; urgency=medium
 
   * debian/libpam-modules.postinst: Add /snap/bin to $PATH in

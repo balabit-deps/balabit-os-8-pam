@@ -30,6 +30,7 @@ override_dh_auto_configure:
 		--libdir=/lib/$(DEB_HOST_MULTIARCH) \
 		--enable-isadir=/lib/security \
 		$(CONFIGURE_OPTS)
+	chmod 775 modules/pam_faillock/tst-pam_faillock
 
 # .install files don't have "except for" handling, so we need to exclude
 # our module that doesn't match right here
