@@ -9,7 +9,7 @@ Index: pam/modules/pam_extrausers/Makefile.am
 ===================================================================
 --- /dev/null
 +++ pam/modules/pam_extrausers/Makefile.am
-@@ -0,0 +1,66 @@
+@@ -0,0 +1,65 @@
 +#
 +# Copyright (c) 2005, 2006, 2009, 2011 Thorsten Kukuk <kukuk@suse.de>
 +#
@@ -42,8 +42,7 @@ Index: pam/modules/pam_extrausers/Makefile.am
 +  pam_extrausers_la_LDFLAGS += -Wl,--version-script=$(srcdir)/../modules.map
 +endif
 +pam_extrausers_la_LIBADD = $(top_builddir)/libpam/libpam.la \
-+	@LIBCRYPT@ @LIBSELINUX@ @TIRPC_LIBS@ @NSL_LIBS@ \
-+	../pam_securetty/tty_secure.lo
++	@LIBCRYPT@ @LIBSELINUX@ @TIRPC_LIBS@ @NSL_LIBS@
 +
 +securelib_LTLIBRARIES = pam_extrausers.la
 +
@@ -3957,7 +3956,7 @@ Index: pam/modules/pam_extrausers/support.c
 ===================================================================
 --- /dev/null
 +++ pam/modules/pam_extrausers/support.c
-@@ -0,0 +1,1083 @@
+@@ -0,0 +1,1079 @@
 +/*
 + * Copyright information at end of file.
 + */
@@ -4569,8 +4568,7 @@ Index: pam/modules/pam_extrausers/support.c
 +	if (on(UNIX_NULLOK_SECURE, ctrl)) {
 +	    const void *uttyname;
 +	    retval = pam_get_item(pamh, PAM_TTY, &uttyname);
-+	    if (retval != PAM_SUCCESS || uttyname == NULL
-+	        || _pammodutil_tty_secure(pamh, (const char *)uttyname) != PAM_SUCCESS)
++	    if (retval != PAM_SUCCESS || uttyname == NULL)
 +	    {
 +	        nullok = 0;
 +	    }
@@ -4661,9 +4659,6 @@ Index: pam/modules/pam_extrausers/support.c
 +		const void *uttyname;
 +		retval2 = pam_get_item(pamh, PAM_TTY, &uttyname);
 +		if (retval2 != PAM_SUCCESS || uttyname == NULL)
-+			return 0;
-+
-+		if (_pammodutil_tty_secure(pamh, (const char *)uttyname) != PAM_SUCCESS)
 +			return 0;
 +	}
 +
@@ -5045,7 +5040,7 @@ Index: pam/modules/pam_extrausers/support.h
 ===================================================================
 --- /dev/null
 +++ pam/modules/pam_extrausers/support.h
-@@ -0,0 +1,182 @@
+@@ -0,0 +1,179 @@
 +/*
 + * $Id$
 + */
@@ -5221,9 +5216,6 @@ Index: pam/modules/pam_extrausers/support.h
 +			,const char *prompt2
 +			,const char *data_name
 +			,const void **pass);
-+
-+extern int _pammodutil_tty_secure(const pam_handle_t *pamh,
-+                                  const char *uttyname);
 +
 +extern int _unix_run_verify_binary(pam_handle_t *pamh,
 +			unsigned int ctrl, const char *user, int *daysleft);

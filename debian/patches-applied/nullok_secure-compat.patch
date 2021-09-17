@@ -1,0 +1,27 @@
+Description: Support nullok_secure as a deprecated alias for nullok
+Author: Steve Langasek <vorlon@debian.org>
+Last-Update: 2020-08-11
+
+Index: pam/modules/pam_unix/support.h
+===================================================================
+--- pam.orig/modules/pam_unix/support.h
++++ pam/modules/pam_unix/support.h
+@@ -99,8 +99,9 @@
+ #define UNIX_NO_PASS_EXPIRY      29     /* Don't check for password expiration if not used for authentication */
+ #define UNIX_DES                 30     /* DES, default */
+ #define UNIX_OBSCURE_CHECKS      31     /* enable obscure checks on passwords */
++#define UNIX_NULLOK_SECURE       32     /* deprecated alias for nullok */
+ /* -------------- */
+-#define UNIX_CTRLS_              32	/* number of ctrl arguments defined */
++#define UNIX_CTRLS_              33	/* number of ctrl arguments defined */
+ 
+ #define UNIX_DES_CRYPT(ctrl)	(off(UNIX_MD5_PASS,ctrl)&&off(UNIX_BIGCRYPT,ctrl)&&off(UNIX_SHA256_PASS,ctrl)&&off(UNIX_SHA512_PASS,ctrl)&&off(UNIX_BLOWFISH_PASS,ctrl))
+ 
+@@ -141,6 +142,7 @@
+ /* UNIX_NO_PASS_EXPIRY */  {"no_pass_expiry",  _ALL_ON_,           0x10000000, 0},
+ /* UNIX_DES */             {"des",             _ALL_ON_^(0x2C22000),        0, 1},
+ /* UNIX_OBSCURE_CHECKS */  {"obscure",         _ALL_ON_,           0x20000000, 0},
++/* UNIX_NULLOK_SECURE */   {"nullok_secure",    _ALL_ON_^(0x200),           0, 0},
+ };
+ 
+ #define UNIX_DEFAULTS  (unix_args[UNIX__NONULL].flag)
