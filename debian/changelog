@@ -1,3 +1,12 @@
+pam (1.3.1-5ubuntu4.6) focal-security; urgency=medium
+
+  * SECURITY REGRESSION: fix CVE-2022-28321 patch location
+    - debian/patches-applied/CVE-2022-28321.patch: pam_access: handle
+      hostnames in access.conf
+    - CVE-2022-28321
+
+ -- Nishit Majithia <nishit.majithia@canonical.com>  Thu, 02 Feb 2023 14:52:59 +0530
+
 pam (1.3.1-5ubuntu4.4) focal-security; urgency=medium
 
   * SECURITY UPDATE: authentication bypass vulnerability
