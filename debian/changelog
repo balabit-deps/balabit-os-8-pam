@@ -1,3 +1,12 @@
+pam (1.3.1-5ubuntu4.7) focal-security; urgency=medium
+
+  * SECURITY UPDATE: pam_namespace local denial of service
+    - debian/patches-applied/CVE-2024-22365.patch: use O_DIRECTORY to
+      prevent local DoS situations in modules/pam_namespace/pam_namespace.c.
+    - CVE-2024-22365
+
+ -- Marc Deslauriers <marc.deslauriers@ubuntu.com>  Wed, 10 Jan 2024 08:55:08 -0500
+
 pam (1.3.1-5ubuntu4.6) focal-security; urgency=medium
 
   * SECURITY REGRESSION: fix CVE-2022-28321 patch location
